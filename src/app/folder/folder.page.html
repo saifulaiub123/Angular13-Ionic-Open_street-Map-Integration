@@ -3,19 +3,75 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ folder }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
+      <ion-title size="large"></ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-slides [options]="slideOpts" pager="true" class="custom-ion-slides">
+      <ion-slide>
+            <img src="/assets/banner/banner-1.jpg" alt="slide-1" />
+      </ion-slide>
+      <ion-slide>
+          <img src="/assets/banner/banner-2.jpg" alt="slide-1" />
+      </ion-slide>
+      <ion-slide>
+          <img src="/assets/banner/banner-3.jpg" alt="slide-1" />
+      </ion-slide>
+    </ion-slides>
+
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card class="action-card" routerLink="/rent-car" routerDirection="root">
+            <img class="header-img" src="/assets/basic/rent-car.png" />
+            <ion-card-header>
+              <ion-card-subtitle>Rent Car</ion-card-subtitle>
+              <!-- <ion-card-title>Card Title</ion-card-title> -->
+            </ion-card-header>
+            <!-- <ion-card-content>
+              Here's a small text
+            </ion-card-content> -->
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="action-card">
+            <img class="header-img" src="/assets/basic/rent-truck.png" style="margin-bottom: 17px;"/>
+            <ion-card-header>
+              <ion-card-subtitle>Rent Truck</ion-card-subtitle>
+              <!-- <ion-card-title>Card Title</ion-card-title> -->
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card class="action-card">
+            <img class="header-img" src="/assets/basic/wedding-special.png" />
+            <ion-card-header>
+              <ion-card-subtitle>Wedding Special</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card class="action-card">
+            <img class="header-img" src="/assets/basic/wedding-special.png" />
+            <ion-card-header>
+              <ion-card-subtitle>Wedding Special</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
   </div>
 </ion-content>

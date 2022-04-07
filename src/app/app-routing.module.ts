@@ -17,11 +17,6 @@ const routes: Routes = [
     canLoad : [AuthGuard]
   },
   {
-    path: 'rent',
-    loadChildren: () => import('./pages/rent/rent.module').then( m => m.RentPageModule),
-    canLoad : [AuthGuard]
-  },
-  {
     path: ROUTER_UTILS.config.base.intro,
     loadChildren: () => import('./pages/intro/intro.module').then( m => m.IntroPageModule)
   },
@@ -29,6 +24,54 @@ const routes: Routes = [
     path: '',
     redirectTo: ROUTER_UTILS.config.auth.login,
     pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'rent-car',
+    loadChildren: () => import('./pages/rent-car/rent-car.module').then( m => m.RentCarPageModule)
+  },
+  {
+    path: 'rent-truck',
+    loadChildren: () => import('./pages/rent-truck/rent-truck.module').then( m => m.RentTruckPageModule)
+  },
+  {
+    path: 'rent-wedding',
+    loadChildren: () => import('./pages/rent-wedding/rent-wedding.module').then( m => m.RentWeddingPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'promo-code',
+    loadChildren: () => import('./pages/promo-code/promo-code.module').then( m => m.PromoCodePageModule)
+  },
+  {
+    path: 'offers',
+    loadChildren: () => import('./pages/offers/offers.module').then( m => m.OffersPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'help',
+    loadChildren: () => import('./pages/help/help.module').then( m => m.HelpPageModule)
+  },
+  {
+    path: 'contact',
+    loadChildren: () => import('./pages/contact/contact.module').then( m => m.ContactPageModule)
+  },
+  {
+    path: 'history',
+    loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
+  },
+  {
+    path: 'points',
+    loadChildren: () => import('./pages/points/points.module').then( m => m.PointsPageModule)
   },
 ];
 

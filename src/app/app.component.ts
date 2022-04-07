@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+// import { StatusBar } from '@ionic-native/status-bar';
+import { MenuController, Platform } from '@ionic/angular';
 import { filter, take, map } from 'rxjs/operators';
 import { AuthenticationService } from './@core/services/authentication.service';
 import { ROUTER_UTILS } from './@core/utils/router.utils';
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
       },
       {
         title: 'Profile',
-         url: '/folder/Inbox',
+         url: '/rent-car',
           icon: 'person'
       }]
     }},
@@ -52,8 +53,13 @@ export class AppComponent implements OnInit {
   //public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(private authService: AuthenticationService,
      private router: Router,
-     public menuCtrl: MenuController
+     private menuCtrl: MenuController,
+    //  private statusBar: StatusBar,
+     private platform: Platform
      ) {
+       this.platform.ready().then(() =>{
+         console.log('Platform ready');
+       });
     this.authService.isLoggedIn().then(val =>{
       if(val)
       {
