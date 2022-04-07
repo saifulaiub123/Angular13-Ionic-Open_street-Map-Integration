@@ -1,0 +1,7 @@
+{
+  "name": "devSideMenu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
