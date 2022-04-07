@@ -12,11 +12,42 @@ import { ROUTER_UTILS } from './@core/utils/router.utils';
 export class AppComponent implements OnInit {
   isAuthenticate: boolean;
 
-  public appPages = [
-    { title: 'Profile', url: '/folder/Inbox', icon: 'person' },
-    { title: 'History', url: '/rent', icon: 'paper-plane' },
-    { title: 'Promo Code', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Help', url: '/folder/Archived', icon: 'archive' }
+  public groupItems = [
+    {
+      item : {
+      name : 'Account',
+      data : [{
+        title: 'Profile',
+         url: '/folder/Inbox',
+          icon: 'person'
+      },
+      {
+        title: 'Profile',
+         url: '/folder/Inbox',
+          icon: 'person'
+      }]
+    }},
+    {
+      item : {
+      name : 'Offers',
+      data : [{
+        title: 'Promo Code', url: '/folder/Favorites', icon: 'heart'
+      }]
+    }},
+    {
+      item : {
+      name : 'Settings',
+      data : [{
+        title: 'History', url: '/rent', icon: 'paper-plane'
+      }]
+    }},
+    {
+      item : {
+      name : 'Support',
+      data : [{
+        title: 'Help', url: '/folder/Archived', icon: 'archive'
+      }]
+    }}
   ];
   //public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(private authService: AuthenticationService,

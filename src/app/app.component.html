@@ -33,11 +33,36 @@
             <ion-list-header>Saiful Islam</ion-list-header>
             <ion-note>01684882360</ion-note> -->
           </div>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+          <ion-menu-toggle auto-hide="false" *ngFor="let group of groupItems; let i = index">
+            <ion-list>
+              <ion-item-group>
+                <ion-item-divider>
+                  <ion-label>{{group.item.name}}</ion-label>
+                </ion-item-divider>
+                <ion-item routerDirection="root" *ngFor="let item of group.item.data;" [routerLink]="[item.url]" lines="none" detail="false" routerLinkActive="selected">
+                  <ion-icon slot="start" [ios]="item.icon + '-outline'" [md]="item.icon + '-sharp'"></ion-icon>
+                  <ion-label>{{ item.title }}</ion-label>
+                </ion-item>
+
+                <!-- <ion-item *ngFor="let item of group.item.data;">
+                  <ion-label><b>Abigail</b></ion-label>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Jesse <b>Adams</b></ion-label>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label><b>Alan</b></ion-label>
+                </ion-item> -->
+              </ion-item-group>
+            </ion-list>
+
+
+            <!-- <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
+            </ion-item> -->
           </ion-menu-toggle>
           <ion-item routerDirection="root" (click)="logout()" lines="none" detail="false">
             <ion-icon slot="start" ios='log-out-outline' md="log-out-sharp'"></ion-icon>

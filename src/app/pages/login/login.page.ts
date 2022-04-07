@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController } from '@ionic/angular';
 import { Button } from 'protractor';
 import { AuthenticationService } from 'src/app/@core/services/authentication.service';
 
@@ -18,7 +18,8 @@ export class LoginPage implements OnInit {
     private authService: AuthenticationService,
     private alertController: AlertController,
     private router: Router,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private menuCtrl: MenuController
     ) { }
 
     get email() {
@@ -45,6 +46,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.credentials.value).subscribe(async (res)=>{
       (await loading).dismiss();
       console.log('success');
+      this.menuCtrl.enable(true);
       this.router.navigateByUrl('/folder/inbox', { replaceUrl: true});
     },
     async (res)=>{
