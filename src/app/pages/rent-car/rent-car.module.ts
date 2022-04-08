@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RentCarPageRoutingModule } from './rent-car-routing.module';
 
 import { RentCarPage } from './rent-car.page';
+import { MapComponent } from 'src/app/component/map/map.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { RentCarPage } from './rent-car.page';
     IonicModule,
     RentCarPageRoutingModule
   ],
-  declarations: [RentCarPage]
+  exports: [],
+  declarations: [RentCarPage,MapComponent]
 })
 export class RentCarPageModule {}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { MapComponent } from 'src/app/component/map/map.component';
 
 @Component({
   selector: 'app-rent-car',
