@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Geolocation } from '@capacitor/geolocation';
 import * as L from 'leaflet';
+import 'leaflet-routing-machine';
 
 @Component({
   selector: 'app-map',
@@ -13,17 +15,18 @@ export class MapComponent implements OnInit, AfterViewInit {
   @ViewChild('map')
   private mapContainer: ElementRef<HTMLElement>;
 
-
   constructor() { }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
+
+    const coord = await this.getCurrentPosition();
     const initialState = {
-      lat: 23.777176,
-      lng: 90.399452,
-      zoom: 12
+      lat: 24.159445036059342,
+      lng: 90.17528396630857,
+      zoom: 17
     };
 
     const map = L.map(this.mapContainer.nativeElement).setView([initialState.lat, initialState.lng], initialState.zoom);
@@ -31,20 +34,82 @@ export class MapComponent implements OnInit, AfterViewInit {
     const myAPIKey = 'ba63517931d94498b2961f2aa4ba7eb8';
     const isRetina = L.Browser.retina;
 
-    const baseUrl = 'https://maps.geoapify.com/v1/tile/osm-bright-grey/{z}/{x}/{y}.png?apiKey=ba63517931d94498b2961f2aa4ba7eb8';
+    //const baseUrl = 'https://maps.geoapify.com/v1/tile/osm-bright-grey/{z}/{x}/{y}.png?apiKey=ba63517931d94498b2961f2aa4ba7eb8';
     // const baseUrl = 'https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=ba63517931d94498b2961f2aa4ba7eb8';
-    const retinaUrl = 'https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}@2x.png?apiKey=ba63517931d94498b2961f2aa4ba7eb8';
-    // var p = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
+    //const retinaUrl = 'https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}@2x.png?apiKey=ba63517931d94498b2961f2aa4ba7eb8';
+    // const baseUrl = 'https://tile.openstreetmap.org/${z}/${x}/${y}.png';
+    const baseUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
+
     L.tileLayer(baseUrl, {
       // eslint-disable-next-line max-len
       attribution: 'Powered by <a href="https://www.geoapify.com/" target="_blank">Geoapify</a> | © OpenStreetMap <a href="https://www.openstreetmap.org/copyright" target="_blank">contributors</a>',
-      apiKey: myAPIKey,
+      // apiKey: myAPIKey,
       maxZoom: 20,
       id: 'osm-bright',
-    } as any).addTo(map);
+    } as any)
+    .addTo(map);
+
+    const century21icon = L.icon({
+      iconUrl: 'https://nominatim.openstreetmap.org/ui/build/images/marker-icon.png',
+      iconSize: [30, 50]
+      });
+    // eslint-disable-next-line max-len
+    // const marker = L.marker([initialState.lat, initialState.lng],{title: 'Pickup Point',icon: century21icon, draggable : true}).addTo(map);
+
+
+    // const marker2 = L.marker([23.79688455, 90.406819348108],{title: 'Drop Point',icon: century21icon, draggable : true}).addTo(map);
+
+    // const group = L.featureGroup([marker, marker2]);
+    // map.fitBounds(group.getBounds());
+
+
+
+    const routing= L.Routing.control({
+      // router: L.Routing.osrmv1({
+      //     serviceUrl: 'http://router.project-osrm.org/route/v1/'
+      // }),
+      showAlternatives: true,
+          lineOptions : {
+          styles: [
+            {color: 'blue', opacity: 0.15, weight: 9},
+            {color: 'blue', opacity: 0.8, weight: 6},
+            {color: 'blue', opacity: 1, weight: 2}
+        ],
+        missingRouteStyles: [
+            {color: 'black', opacity: 0.5, weight: 7},
+            {color: 'white', opacity: 0.6, weight: 4},
+            {color: 'gray', opacity: 0.8, weight: 2, dashArray: '7,12'}
+        ],
+          extendToWaypoints : false,
+          missingRouteTolerance : 1
+      },
+      fitSelectedRoutes: true,
+      altLineOptions: {
+        styles: [{color: '#4c87e1', weight: 10}],
+        extendToWaypoints : true,
+        missingRouteTolerance : 1
+      },
+      show: false,
+      routeWhileDragging: true,
+      waypoints: [
+          L.latLng(23.691879, 90.457882),
+          L.latLng(23.7093978, 90.433806)
+      ],
+      useZoomParameter: true,
+      autoRoute: true,
+  }).addTo(map);
+
+  routing.on('routesfound', (e) => {
+    const distance = e.routes[0].summary.totalDistance;
+    console.log('Distance ' + distance);
+});
 
     setTimeout(() => {
       map.invalidateSize();
     }, 800);
   }
+
+
+  getCurrentPosition = async () => await Geolocation.getCurrentPosition();
+
 }
