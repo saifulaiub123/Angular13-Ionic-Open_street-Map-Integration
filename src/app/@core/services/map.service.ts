@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LOCATION_SEARCH_API, LOCATION_SEARCH_API_ADDITIONAL_PARAMS } from '../constant/app.constant';
-import { AddressLookupResponse } from '../model/location-search-response';
+import { AddressLookupResponse } from '../model/address-lookup-response';
 
 @Injectable({
   providedIn: 'root'
