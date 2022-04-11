@@ -34,7 +34,7 @@ export class RentCarPage implements OnInit {
   onLocationSearch(event, searchType)
   {
     this.searchType = searchType;
-    this.mapService.searchPlaces(event.detail.value).subscribe(async (res)=>{
+    this.mapService.addressLookup(event.detail.value).subscribe(async (res)=>{
       this.searchedPlace = res;
       this.isAutocompleteVisible = true;
       console.log(res);

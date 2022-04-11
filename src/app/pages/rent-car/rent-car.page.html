@@ -48,7 +48,7 @@
             <ion-searchbar onIonInput={this.handleSearch} debounce = "500" mode="ios" placeholder="Search pickup location" (ionChange)="onLocationSearch($event,2)" [value]="endPoint"></ion-searchbar>
             <ion-list *ngIf="isAutocompleteVisible">
               <ion-item *ngFor="let place of searchedPlace" (click)="onLocationSelect(place)">
-                <ion-label>{{ place.display_name }}</ion-label>
+                <ion-label>{{ place.displayName }}</ion-label>
               </ion-item>
             </ion-list>
           </ion-item>
