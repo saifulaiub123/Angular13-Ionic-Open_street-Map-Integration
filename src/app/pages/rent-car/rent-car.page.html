@@ -11,10 +11,9 @@
 <ion-content>
   <div style="height: 40%;">
     <app-map
-      [routeStartingPoint]="routeStartingPoint"
-      [routeEndPoint]="routeEndPoint"
-    >
-    </app-map>
+    [routeWayPoints]="routeWayPoints"
+    (mapRouteCallback)="mapRouteCallback()"
+    ></app-map>
   </div>
   <div style="height: 60%;">
     <ion-grid>
@@ -45,7 +44,7 @@
             <ion-label position="stacked">
               Drop off Point
             </ion-label>
-            <ion-searchbar onIonInput={this.handleSearch} debounce = "500" mode="ios" placeholder="Search pickup location" (ionChange)="onLocationSearch($event,2)" [value]="endPoint"></ion-searchbar>
+            <ion-searchbar onIonInput={this.handleSearch} debounce = "500" mode="ios" placeholder="Search pickup location" (ionChange)="onLocationSearch($event,3)" [value]="endPoint"></ion-searchbar>
             <ion-list *ngIf="isAutocompleteVisible">
               <ion-item *ngFor="let place of searchedPlace" (click)="onLocationSelect(place)">
                 <ion-label>{{ place.displayName }}</ion-label>

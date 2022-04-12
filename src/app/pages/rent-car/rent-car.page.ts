@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonDatetime, NavController } from '@ionic/angular';
-import { ILocationModel } from 'src/app/@core/model/IlocationModel';
+import { WayPoint } from 'src/app/@core/enum/way-point';
+import { AddressLookupResponse } from 'src/app/@core/model/address-lookup-response';
+import { RouteWayPoint } from 'src/app/@core/model/route-way-point';
 import { MapService } from 'src/app/@core/services/map.service';
 
 
@@ -12,10 +14,9 @@ import { MapService } from 'src/app/@core/services/map.service';
 export class RentCarPage implements OnInit {
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
 
-  routeStartingPoint: ILocationModel = {};
-  routeEndPoint: ILocationModel = {};
+  routeWayPoints: RouteWayPoint[] = [];
 
-  searchedPlace: any;
+  searchedPlace: AddressLookupResponse[];
   isAutocompleteVisible = false;
   searchType: number;
   pickupPoint: string;
@@ -37,25 +38,26 @@ export class RentCarPage implements OnInit {
     this.mapService.addressLookup(event.detail.value).subscribe(async (res)=>{
       this.searchedPlace = res;
       this.isAutocompleteVisible = true;
-      console.log(res);
     });
   }
-  onLocationSelect(place){
-    if(this.searchType === 1)
+  onLocationSelect(place: AddressLookupResponse){
+    if(this.searchType === WayPoint.Start)
     {
-      this.pickupPoint = place.display_name;
-
-      this.routeStartingPoint.lat = place.lat;
-      this.routeStartingPoint.long = place.lon;
+      this.pickupPoint = place.displayName;
+      this.routeWayPoints.push(new RouteWayPoint(place.latitude,place.longitude));
     }
-    else if(this.searchType === 2)
+    else if(this.searchType === WayPoint.Destination)
     {
-      this.endPoint = place.display_name;
-
-      this.routeEndPoint.lat = place.lat;
-      this.routeEndPoint.long = place.lon;
+      this.endPoint = place.displayName;
+      this.routeWayPoints.push(new RouteWayPoint(place.latitude,place.longitude));
+      this.routeWayPoints = [...this.routeWayPoints];
     }
     this.isAutocompleteVisible = false;
+  }
+  mapRouteCallback()
+  {
+    this.routeWayPoints = [];
+    this.routeWayPoints = [...this.routeWayPoints];
   }
   goBack()
   {

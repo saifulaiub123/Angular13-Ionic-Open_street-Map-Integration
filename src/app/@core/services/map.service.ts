@@ -23,7 +23,7 @@ export class MapService {
         new AddressLookupResponse(
           item.display_name,
           item.lat,
-          item.long
+          item.lon
         )
       )
     ));
