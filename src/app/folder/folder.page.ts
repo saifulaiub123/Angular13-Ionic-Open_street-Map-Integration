@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FcmService } from '../@core/services/fcm.service';
 
 @Component({
   selector: 'app-folder',
@@ -17,7 +18,9 @@ export class FolderPage implements OnInit {
     }
   };
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private fcmService: FcmService) {
+    this.fcmService.initPush();
+  }
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
