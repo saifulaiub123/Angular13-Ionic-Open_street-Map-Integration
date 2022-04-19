@@ -8,6 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FolderPage implements OnInit {
   public folder: string;
+  public slideOpts = {
+    initialSlide: 1,
+    speed: 400,
+    loop: true,autoplay: {
+      delay: 4000,
+      disableOnInteraction: true,
+    }
+  };
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
