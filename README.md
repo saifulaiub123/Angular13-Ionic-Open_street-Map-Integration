@@ -5,7 +5,7 @@
 <li>Angular 13</li>
 <li>Ionic : used for converting app in android version</li>
 <li>Open Street Map : used for map api</li>
-<li>Leberty js : used for visualize the map</li>
+<li>leaflet js : used for visualizing the map</li>
 <li>Nominatim Api: used for global place search</li>
 
 <h2>How to Use</h2>
