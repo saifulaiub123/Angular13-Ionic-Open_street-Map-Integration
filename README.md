@@ -10,7 +10,7 @@
 
 <h2>How to Use</h2>
 You can pull the docker image for checking how it's look like. 
-run the below command.
+run the below command.</br>
 <b>docker run -d -p 8888:80 saifulaiub123/open-street-map-angular-13</b>
 
 otherwise for developing purpose follow the below instruction : 
