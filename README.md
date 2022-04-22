@@ -9,6 +9,12 @@
 <li>Nominatim Api: used for global place search</li>
 
 <h2>How to Use</h2>
+You can pull the docker image for checking how it's look like. 
+run the below command.
+<b>docker run -d -p 8888:80 saifulaiub123/open-street-map-angular-13</b>
+
+otherwise for developing purpose follow the below instruction : 
+
 <li>run "npm install"</li>
 <li>npm start</li>
 <li>pass out intro pages</li>
